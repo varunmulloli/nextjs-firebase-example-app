@@ -1,4 +1,4 @@
-import firebaseSDK from './auth/firebaseSDK';
+import firebaseSDK from '../firebase/firebaseSDK';
 
 export default async () => {
   return firebaseSDK.auth().signOut()
@@ -6,7 +6,9 @@ export default async () => {
       if (typeof window !== 'undefined') {
         try {
           const elem = window.document.getElementById('__LOGGED_IN_USER');
-          elem.parentNode.removeChild(elem);
+          if(elem && elem.parentNode) {
+            elem.parentNode.removeChild(elem);
+          }
         } catch (e) {
           console.error(e);
         }

@@ -9,6 +9,7 @@ class CustomDocument extends Document {
     return (
       <Html>
         <Head>
+          <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&display=swap" rel="stylesheet" />
           <script id="__LOGGED_IN_USER" type="application/json" 
             dangerouslySetInnerHTML={{ __html: JSON.stringify(loggedInUser, null, 2) }}
           />

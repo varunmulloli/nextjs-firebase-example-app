@@ -1,4 +1,4 @@
-import middleware from '../../middlewares/middleware';
+import middleware from '../../src/middlewares';
 
 const handler = (req, res) => {
   req.session = null;

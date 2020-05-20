@@ -1,5 +1,5 @@
-import firebaseAdmin from '../../utils/auth/firebaseAdmin';
-import middleware from '../../middlewares/middleware';
+import firebaseAdmin from '../../src/firebase/firebaseAdmin';
+import middleware from '../../src/middlewares';
 
 const handler = (req, res) => {
   if (!req.body) {

@@ -1,5 +1,5 @@
 import React from 'react';
-import firebaseSDK from '../utils/auth/firebaseSDK';
+import firebaseSDK from '../firebase/firebaseSDK';
 
 const useAuth = () => {
   const [state, setState] = React.useState(() => {
