@@ -1,16 +1,26 @@
 import React from 'react';
 import firebaseSDK from '../firebase/firebaseSDK';
 
+const fetchCSRFToken = () => {
+  return fetch('/api/csrf', { method: 'HEAD' })
+    .then(response => response.headers.get('x_csrf_token') || "");
+}
+
 const useAuth = () => {
   const [state, setState] = React.useState(() => {
     const user = firebaseSDK.auth().currentUser;
     return { initializing: !user, user };
   });
 
-  function loginOnServer(token) {
+  async function loginOnServer(token) {
+    const csrfToken = await fetchCSRFToken();
+
     return fetch('/api/login', {
       method: 'POST',
-      headers: new Headers({ 'Content-Type': 'application/json' }),
+      headers: new Headers({ 
+        'Content-Type': 'application/json',
+        'csrf-token': csrfToken,
+      }),
       credentials: 'same-origin',
       body: JSON.stringify({ token }),
     });
