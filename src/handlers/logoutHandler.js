@@ -1,4 +1,4 @@
-import firebaseSDK from '../firebase/firebaseSDK';
+import { firebaseSDK } from '../firebase/firebaseSDK';
 
 export default async () => {
   return firebaseSDK.auth().signOut()

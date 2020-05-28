@@ -3,24 +3,20 @@ import React from 'react';
 import requireLogin from '../src/components/requireLogin';
 import Header from '../src/components/header';
 import Login from '../src/components/login';
-
+import Orders from '../src/components/orders';
 import { useLoggedInUserContext } from '../src/hooks/useLoggedInUserContext';
 
 const Index = () => {
-  const { loggedInUser: AuthUser } = useLoggedInUserContext();
-
+  const { loggedInUser } = useLoggedInUserContext();  
+  
   return (
-    <div>
-      <Header loggedInUser={AuthUser} />
+    <>
+      <Header loggedInUser={loggedInUser} />
 
-      {!AuthUser ? (
-        <Login />
-      ) : (
-        <div>
-          <p>You're signed in. Email: {AuthUser.email}</p>
-        </div>
-      )}
-    </div>
+      { !loggedInUser && <Login /> }
+      
+      { loggedInUser && <Orders /> }
+    </>
   )
 }
 

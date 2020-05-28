@@ -1,9 +1,26 @@
 import { colors } from '../src/theme';
+import * as actions from '../src/constants/actions';
+import { ReducerContext } from '../src/hooks/useCustomReducer';
+
+const initialState = {
+  orders: [],
+};
+
+const orderReducer = (state, action) => {
+  switch (action.type) {
+    case actions.FETCH_ALL_ORDERS: return Object.assign({}, state, { orders: action.orders });
+    default: return state;
+  }
+}
 
 export default function App({ Component, pageProps }) {
+  const [state, dispatch] = React.useReducer(orderReducer, initialState);
+
   return (
     <>
-      <Component {...pageProps} />
+      <ReducerContext.Provider value={{ state, dispatch }} >
+        <Component {...pageProps} />
+      </ReducerContext.Provider>
 
       <style jsx global>{`
         html {

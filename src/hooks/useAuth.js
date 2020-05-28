@@ -1,5 +1,5 @@
 import React from 'react';
-import firebaseSDK from '../firebase/firebaseSDK';
+import { firebaseSDK } from '../firebase/firebaseSDK';
 
 const fetchCSRFToken = () => {
   return fetch('/api/csrf', { method: 'HEAD' })
