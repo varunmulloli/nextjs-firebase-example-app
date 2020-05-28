@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Head from 'next/head';
 import requireLogin from '../src/components/requireLogin';
 import Header from '../src/components/header';
 import Login from '../src/components/login';
@@ -11,10 +11,13 @@ const Index = () => {
   
   return (
     <>
+      <Head>
+        <title>{ loggedInUser ? "Orders Overview" : "Login" }</title>
+      </Head>
+
       <Header loggedInUser={loggedInUser} />
 
       { !loggedInUser && <Login /> }
-      
       { loggedInUser && <Orders /> }
     </>
   )

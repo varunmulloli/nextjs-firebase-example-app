@@ -1,10 +1,8 @@
 import React from 'react';
 import Router from 'next/router';
 import { useRouter } from 'next/router'
-
 import { getUserEmail } from '../handlers/loggedInUserHandler';
 import logoutHandler from '../handlers/logoutHandler';
-
 import * as theme from '../theme';
 
 const signInURL = "/";
@@ -33,13 +31,15 @@ const Header = ({ loggedInUser }) => {
         <div className="spacer"></div>
          
         { !loggedInUser &&
-          <div className={`navItem button ${activeNavItem(router, signInURL)}`} title="Go to Login page" onClick={e => Router.push(signInURL)}>Sign In</div>
+          <div onClick={e => Router.push(signInURL)} className={`navItem button ${activeNavItem(router, signInURL)}`} title="Go to Login page">
+            Sign In
+          </div>
         }
 
         { loggedInUser &&
           <>
             <div className="navItem">{getUserEmail(loggedInUser)}</div>
-            <div className="navItem button" title="Logout" onClick={e => signOut()}>Sign Out</div>
+            <div onClick={e => signOut()} className="navItem button" title="Logout">Sign Out</div>
           </>
         }
       </div>

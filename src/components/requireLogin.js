@@ -36,7 +36,6 @@ export default ComposedComponent => {
       }
     }
 
-    //TODO: Remove this later
     set(ctx, 'customData.loggedInUser', loggedInUser)
 
     let composedInitialProps = {}

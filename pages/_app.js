@@ -8,7 +8,9 @@ const initialState = {
 
 const orderReducer = (state, action) => {
   switch (action.type) {
-    case actions.FETCH_ALL_ORDERS: return Object.assign({}, state, { orders: action.orders });
+    case actions.FETCH_ORDERS: 
+      const newOrders = Object.assign({}, state.orders, action.orders);
+      return Object.assign({}, state, { orders: newOrders });
     default: return state;
   }
 }

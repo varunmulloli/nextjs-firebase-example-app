@@ -33,3 +33,12 @@ export const fetchOrder = (orderId) => {
     return Promise.resolve({});
   }
 } 
+
+export const updateOrder = (orderId, title, bookingDate) => {
+  return fetch(`/api/orders/${orderId}`, {
+    method: 'PUT',
+    credentials: 'same-origin',
+    body: JSON.stringify({ title, bookingDate }),
+    headers: new Headers({ 'Content-Type': 'application/json' })
+  });
+}

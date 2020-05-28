@@ -1,6 +1,5 @@
 import React from 'react';
 import loginHandler from '../handlers/loginHandler';
-
 import * as theme from '../theme';
 
 const handleLoginFormSubmit = (email, password) => event => {

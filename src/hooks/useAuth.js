@@ -1,26 +1,16 @@
 import React from 'react';
 import { firebaseSDK } from '../firebase/firebaseSDK';
 
-const fetchCSRFToken = () => {
-  return fetch('/api/csrf', { method: 'HEAD' })
-    .then(response => response.headers.get('x_csrf_token') || "");
-}
-
 const useAuth = () => {
   const [state, setState] = React.useState(() => {
     const user = firebaseSDK.auth().currentUser;
     return { initializing: !user, user };
   });
 
-  async function loginOnServer(token) {
-    const csrfToken = await fetchCSRFToken();
-
+  function loginOnServer(token) {
     return fetch('/api/login', {
       method: 'POST',
-      headers: new Headers({ 
-        'Content-Type': 'application/json',
-        'csrf-token': csrfToken,
-      }),
+      headers: new Headers({ 'Content-Type': 'application/json' }),
       credentials: 'same-origin',
       body: JSON.stringify({ token }),
     });
@@ -32,7 +22,6 @@ const useAuth = () => {
       credentials: 'same-origin',
     });
   };
-
 
   function updateSession(user) {
     setState({ initializing: false, user })

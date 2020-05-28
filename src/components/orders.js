@@ -1,18 +1,18 @@
 import React from 'react';
 import Link from 'next/link';
 import { get } from 'lodash';
-import { fetchAllOrders } from '../handlers/orderHandler'; 
-import * as theme from '../theme';
-import { FETCH_ALL_ORDERS } from '../constants/actions';
+import { FETCH_ORDERS } from '../constants/actions';
 import { useCustomReducer } from '../hooks/useCustomReducer';
+import { fetchAllOrders } from '../handlers/orderHandler'; 
 import { getReadableDate } from '../handlers/dateHandler';
+import * as theme from '../theme';
 
 const Orders = () => {
   const { state, dispatch } = useCustomReducer();
 
   React.useEffect(() => {
     fetchAllOrders()
-      .then(orders => dispatch({ type: FETCH_ALL_ORDERS, orders: orders }));
+      .then(orders => dispatch({ type: FETCH_ORDERS, orders: orders }));
   }, []);
 
   return (
@@ -35,7 +35,8 @@ const Orders = () => {
               const order = state.orders[orderId];
               const title = get(order, 'title', "");
               const timestamp = get(order, 'bookingDate', null);
-              const bookingDate = bookingDate ? getReadableDate(timestamp) : "";
+              const bookingDate = timestamp ? getReadableDate(timestamp) : "";
+              
               return (
                 <tr key={orderId}>
                   <td>
